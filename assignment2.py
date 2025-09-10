@@ -1,6 +1,6 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @author: write your name here
+# @author: Sunghoon Lee
 # Function to perform Kruskal's algorithm for single link k-clustering
 
 class UnionFind:
