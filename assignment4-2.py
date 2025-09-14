@@ -38,26 +38,24 @@ def find_max_cross_subarray(A, low, mid, high):
     
     l_sum = 0
     r_sum = 0
-    if low == mid:
-        return (low, high, sum(A[low:mid+1]))
+    # if low == high:
+    #     return (low, high, A[low])
     
-    else:
-        # print(low, mid, high) 
-        # left portion
-        for i in reversed(range(low, mid)):
-            l_sum = l_sum + A[i]
-            if l_sum > left_sum:
-                left_sum = l_sum
-                max_left = i
-        
-        # right portion
-        for j in range(mid, high):
-            r_sum = r_sum + A[j]
-            if r_sum > right_sum:
-                right_sum = r_sum
-                max_right = j
+    # left portion
+    for i in range(mid, low - 1, -1):
+        l_sum = l_sum + A[i]
+        if l_sum > left_sum:
+            left_sum = l_sum
+            max_left = i
+    
+    # right portion
+    for j in range(mid+1, high+1):
+        r_sum = r_sum + A[j]
+        if r_sum > right_sum:
+            right_sum = r_sum
+            max_right = j
            
-        return (max_left, max_right, left_sum + right_sum)
+    return (max_left, max_right, left_sum + right_sum)
 
 
 def find_max_subarray(A, low, high):
@@ -81,10 +79,10 @@ def find_max_subarray(A, low, high):
 
 def DivideAndConquer(arr, ans):
     A = change_in_arr(arr)
+    # print(A)
     high = len(A)-1
     low, high, sum = find_max_subarray(A, 0, high)
-    return sum
+    return low, high, sum
 
-ans1 = DivideAndConquer(arr, ans)
-print(ans1)                                     # printing the answer
-# print(find_max_cross_subarray(A, 0, 4, 7))
+low, high, ans1 = DivideAndConquer(arr, ans)
+print(low, high)

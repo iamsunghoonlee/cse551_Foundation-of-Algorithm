@@ -20,9 +20,24 @@ arr = [15, 13, 8, 14, 12, 9, 10, 15, 9]        # initialize the input array
 # O(n^2), O(n logn), O(n).
 
 # WRITE YOUR CODE HERE
-def kadanesAlgorithm(arr, ans):
+def change_in_arr(A):
+    delta_arr = []
+    for i in range(len(A)-1):
+        change = A[i+1] - A[i]
+        delta_arr.append(change)
+    return delta_arr
+
+def kadanesAlgorithm(arr):
+    local_max = arr[0]
+    global_max = arr[0]
     
-    return ans
+    for i in range(1, len(arr)):
+        local_max = max(arr[i], local_max + arr[i])
+        if local_max > global_max:
+            global_max = local_max
+    
+    return global_max
 
-
-print( ...... )                         # printing the max possible subarray sum, as ans
+A = change_in_arr(arr)
+ans = kadanesAlgorithm(A)
+print(ans)                         # printing the max possible subarray sum, as ans

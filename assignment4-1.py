@@ -32,15 +32,19 @@ def brute_force(arr, ans):
     
     sum_list = []
     pair = []
-
+    
+    
     for i, first in enumerate(change_in_arr):
+        profit = 0
         for j, second in enumerate(change_in_arr[i+1:]):
-            profit = sum(change_in_arr[i:i+j+1])
-            if profit > ans:
-                ans = profit
-                
-    return ans
+            profit += change_in_arr[i+j]
+        if profit > ans:
+            ans = profit
+            pair.append((i, j))
+    return change_in_arr, ans, pair[-1]
 
 
-ans1 = brute_force(arr, ans)
+change_in_arr, ans1, pair = brute_force(arr, ans)
 print(ans1)                                     # printing the answer
+# print(pair)
+print(change_in_arr)
